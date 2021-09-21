@@ -94,6 +94,6 @@ class CarTest {
     @EmptySource
     void testSetMultipleNumbers(String s) {
         car.setCarNumber(s);
-        assertEquals(s, car.getCarNumber());
+        assertEquals(s, car.getCarNumber()); //
     }
 }
