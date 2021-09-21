@@ -3,6 +3,13 @@ package tests;
 import com.company.Car;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
+
+
+import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -56,5 +63,37 @@ class CarTest {
     void getListOfTwoOwners() {
         car.setCarOwner("Maksim Tarasov2");
         assertArrayEquals(new String[]{"Maksim T.", "Maksim Tarasov2"}, car.getOwners().toArray());
+    }
+
+    @Test
+    public  void testPrivateMethod() {
+        try {
+            Method method = Car.class.getDeclaredMethod("testMethod", null);
+            method.setAccessible(true);
+
+            assertEquals("Private value", method.invoke(car).toString(), "Method testMethod() has a different value!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public  void testPrivateMethodWithArgument() {
+        try {
+            Method method = Car.class.getDeclaredMethod("testMethod", String.class);
+            method.setAccessible(true);
+
+            assertEquals("abcD", method.invoke(car, "abcD").toString(), "Method testMethod() has a different value!");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"ABC-1", "ABC-2", "ABC-3"})
+    @NullSource
+    @EmptySource
+    void testSetMultipleNumbers(String s) {
+        car.setCarNumber(s);
+        assertEquals(s, car.getCarNumber());
     }
 }

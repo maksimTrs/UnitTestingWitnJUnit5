@@ -49,4 +49,12 @@ public class Car {
     public List<String> getOwners() {
         return ownersHistoryList;
     }
+
+    private String testMethod() {
+        return "Private value";
+    }
+
+    private String testMethod(String a) {
+        return a;
+    }
 }
