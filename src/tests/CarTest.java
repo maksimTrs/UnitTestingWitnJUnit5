@@ -82,7 +82,7 @@ class CarTest {
             Method method = Car.class.getDeclaredMethod("testMethod", String.class);
             method.setAccessible(true);
 
-            assertEquals("abcD1111", method.invoke(car, "abcD").toString(), "Method testMethod() has a different value!");
+            assertEquals("abcD111", method.invoke(car, "abcD").toString(), "Method testMethod() has a different value!");
         } catch (Exception e) {
             e.printStackTrace();
         }
