@@ -24,7 +24,7 @@ class CarTest {
 
     @Test
     void getCarBrand() {
-        assertEquals("Skoda1", car.getCarBrand(), "Method getCarBrand() has a different value!");
+        assertEquals("Skoda", car.getCarBrand(), "Method getCarBrand() has a different value!");
     }
 
     @Test
